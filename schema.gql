@@ -1,0 +1,71 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  id: Float
+  category: String!
+}
+
+type Image {
+  id: Float
+  product_id: Float!
+  description: String!
+  url: String!
+}
+
+type Product {
+  id: Float!
+  product: String!
+  price: Float!
+  images: [Image]!
+}
+
+input CategoryInput {
+  id: Float
+  category: String!
+}
+
+input ImageInput {
+  id: Float
+  product_id: Float!
+  description: String!
+  url: String!
+}
+
+type Query {
+  getAllProducts: [Product!]!
+  getProductsByCategory(input: ProductCategoryFilter!): [Product!]!
+  getProductById(id: Float!): Product!
+  getAllCategories: [Category!]!
+}
+
+input ProductCategoryFilter {
+  categoryID: Float
+}
+
+type Mutation {
+  createProduct(input: ProductInput!): Product!
+  updateProduct(input: ProductUpdateInput!): Product!
+  removeProduct(id: Float!): Boolean!
+  removeImage(product_id: Float!, image_id: Float!): Boolean!
+  addImage(input: ImageInput!): Image!
+  createCategory(input: CategoryInput!): Category!
+  removeCategory(id: Float!): Boolean!
+  updateCategory(input: CategoryInput!): Category!
+}
+
+input ProductInput {
+  id: Float
+  product: String!
+  price: Float!
+  images: [ImageInput!]
+}
+
+input ProductUpdateInput {
+  id: Float
+  product: String
+  price: Float
+  images: [ImageInput!]
+  categories: [Int!]
+}
